@@ -2,7 +2,8 @@ package psql
 
 import (
 	"context"
-	"workingwithdatabase/internal/entity"
+
+	"github.com/irvantaufik28/Album-Api/internal/entity"
 )
 
 func (repository *albumConnection) Get(ctx context.Context, id int64) (entity.Album, error) {

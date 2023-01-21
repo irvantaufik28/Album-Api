@@ -3,7 +3,8 @@ package psql
 import (
 	"context"
 	"database/sql"
-	"workingwithdatabase/internal/entity"
+
+	"github.com/irvantaufik28/Album-Api/internal/entity"
 )
 
 type AlbumPSQL interface {
