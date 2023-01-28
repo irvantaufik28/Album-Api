@@ -13,3 +13,14 @@ func (service *artistsService) FindById(ctx context.Context, id int64) (artists 
 
 	return artists, nil
 }
+
+func (sercvice *artistsService) Create(ctx context.Context, artists *entity.Artists) (*entity.Artists, error) {
+	var newArtists *entity.Artists
+
+	err := sercvice.artists.Create(ctx, artists)
+
+	if err != nil {
+		return newArtists, err
+	}
+	return artists, err
+}

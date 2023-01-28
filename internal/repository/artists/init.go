@@ -10,7 +10,7 @@ import (
 
 type ArtistRepository interface {
 	FindById(ctx context.Context, id int64) (entity.Artists, error)
-	// Create(ctx context.Context) (entity.Artist, error)
+	Create(ctx context.Context, artist *entity.Artists) error
 }
 
 type artistsRepository struct {

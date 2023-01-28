@@ -8,6 +8,7 @@ import (
 
 type ArtistController interface {
 	FindById(ctx *gin.Context)
+	Create(ctx *gin.Context)
 }
 
 type artirsController struct {

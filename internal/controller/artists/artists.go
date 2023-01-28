@@ -1,6 +1,7 @@
 package artists
 
 import (
+	"github/irvantaufik/album/internal/entity"
 	"github/irvantaufik/album/internal/helper"
 	"net/http"
 	"strconv"
@@ -27,4 +28,27 @@ func (controller *artirsController) FindById(ctx *gin.Context) {
 
 	res := helper.BuildResponse(true, "success", artist)
 	ctx.JSON(http.StatusOK, res)
+}
+
+func (controller *artirsController) Create(ctx *gin.Context) {
+	var requestBody entity.Artists
+
+	err := ctx.BindJSON(&requestBody)
+
+	if err != nil {
+		res := helper.BuildErrorResponse("Bad Request", err.Error(), helper.EmptyObj{})
+		ctx.AbortWithStatusJSON(http.StatusBadRequest, res)
+
+		return
+	}
+
+	artists, err := controller.artists.Create(ctx, &requestBody)
+	if err != nil {
+		res := helper.BuildErrorResponse("Internal Server Error", err.Error(), helper.EmptyObj{})
+		ctx.AbortWithStatusJSON(http.StatusInternalServerError, res)
+		return
+	}
+	res := helper.BuildResponse(true, "OK!", artists)
+	ctx.JSON(http.StatusOK, res)
+
 }

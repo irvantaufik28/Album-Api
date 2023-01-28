@@ -8,6 +8,7 @@ import (
 
 type ArtistsService interface {
 	FindById(ctx context.Context, id int64) (entity.Artists, error)
+	Create(ctx context.Context, artists *entity.Artists) (*entity.Artists, error)
 }
 
 type artistsService struct {
