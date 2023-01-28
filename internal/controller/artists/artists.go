@@ -30,6 +30,17 @@ func (controller *artirsController) FindById(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, res)
 }
 
+func (controller *artirsController) FindAll(ctx *gin.Context) {
+	artists, err := controller.artists.FindAll(ctx)
+	if err != nil {
+		res := helper.BuildErrorResponse("internal server error", err.Error(), helper.EmptyObj{})
+		ctx.AbortWithStatusJSON(http.StatusInternalServerError, res)
+		return
+	}
+	res := helper.BuildResponse(true, "OK!", artists)
+	ctx.JSON(http.StatusOK, res)
+}
+
 func (controller *artirsController) Create(ctx *gin.Context) {
 	var requestBody entity.Artists
 

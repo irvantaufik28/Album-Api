@@ -39,6 +39,7 @@ func main() {
 	artistsRoutes := r.Group("/api/v1/artists")
 	{
 		artistsRoutes.GET("/:id", controller.ArtistController.FindById)
+		artistsRoutes.GET("/", controller.ArtistController.FindAll)
 		artistsRoutes.POST("/", controller.ArtistController.Create)
 
 	}

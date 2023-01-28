@@ -9,6 +9,7 @@ import (
 
 type ArtistsOrm interface {
 	FindById(ctx context.Context, id int64) (entity.Artists, error)
+	FindAll(ctx context.Context) ([]entity.Artists, error)
 	Create(ctx context.Context, artist *entity.Artists) error
 }
 

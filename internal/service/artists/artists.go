@@ -14,6 +14,16 @@ func (service *artistsService) FindById(ctx context.Context, id int64) (artists 
 	return artists, nil
 }
 
+func (service *artistsService) FindAll(ctx context.Context) ([]entity.Artists, error) {
+	var artists []entity.Artists
+
+	artists, err := service.artists.FindAll(ctx)
+	if err != nil {
+		return artists, err
+	}
+	return artists, nil
+}
+
 func (sercvice *artistsService) Create(ctx context.Context, artists *entity.Artists) (*entity.Artists, error) {
 	var newArtists *entity.Artists
 

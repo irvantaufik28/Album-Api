@@ -14,6 +14,14 @@ func (repository *artistsConnection) FindById(ctx context.Context, id int64) (en
 	return artist, nil
 }
 
+func (repository *artistsConnection) FindAll(ctx context.Context) ([]entity.Artists, error) {
+	var artist []entity.Artists
+	if err := repository.db.Find(&artist).Error; err != nil {
+		return nil, err
+	}
+	return artist, nil
+}
+
 func (repository *artistsConnection) Create(ctx context.Context, Artists *entity.Artists) error {
 
 	tx := repository.db.Create(Artists)
